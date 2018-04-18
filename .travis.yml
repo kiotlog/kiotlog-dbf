@@ -1,0 +1,20 @@
+language: csharp
+solution: KiotlogDBF.sln
+mono: none
+dotnet: 2.1.105
+services:
+  - postgresql
+addons:
+  postgresql: "10"
+env:
+  global:
+  - KL_PGDATABASE="kl_tests"
+  - KL_PGUSER="postgres"
+  - KL_PGPASS=""
+  - KL_PGPORT=5432
+  - KL_PGHOST=localhost
+
+script:
+  - dotnet build
+  - cd Migrations; dotnet ef dbcontext info; dotnet ef migrations list; dotnet ef database update; cd ..
+  - cd KiotlogDBF.Tests; dotnet xunit -verbose; cd ..
