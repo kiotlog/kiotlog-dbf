@@ -19,9 +19,9 @@ env:
   - KL_PGHOST=localhost
 
 before_script:
-  - set -ex && cd / && sudo -u postgres -- psql -p $KL_PGPORT -c "CREATE ROLE $KL_PGUSER PASSWORD 'md5b23e166616b9c6ce6684731cffc468b8' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;" && cd -
+  - set -ef && cd / && sudo -u postgres -- psql -p $KL_PGPORT -c "CREATE ROLE $KL_PGUSER PASSWORD 'md5b23e166616b9c6ce6684731cffc468b8' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;" && cd -
 
 script:
   - dotnet build
-  - set -ex && cd Migrations && dotnet ef dbcontext info && dotnet ef migrations list && dotnet ef database update && cd ..
-  - set -ex && cd KiotlogDBF.Tests && dotnet xunit -verbose -fxversion 2.0.7 && cd ..
+  - set -ef && cd Migrations && dotnet ef dbcontext info && dotnet ef migrations list && dotnet ef database update && cd ..
+  - set -ef && cd KiotlogDBF.Tests && dotnet xunit -verbose -fxversion 2.0.7 && cd ..
