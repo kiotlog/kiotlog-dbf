@@ -1,2 +1,8 @@
+.vscode/
+.idea/
 bin/
 obj/
+*.code-workspace
+.paket/Paket.Restore.targets
+.paket/paket.targets
+paket-files/paket.restore.cached
