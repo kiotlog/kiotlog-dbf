@@ -13,7 +13,7 @@ addons:
 env:
   global:
   - KL_PGDATABASE="kl_tests"
-  - KL_PGUSER="postgres"
+  - KL_PGUSER="travis"
   - KL_PGPASS=
   - KL_PGPORT=5433
   - KL_PGHOST=localhost
