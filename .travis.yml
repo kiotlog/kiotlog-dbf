@@ -6,12 +6,16 @@ services:
   - postgresql
 addons:
   postgresql: "10"
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
 env:
   global:
   - KL_PGDATABASE="kl_tests"
   - KL_PGUSER="postgres"
   - KL_PGPASS=""
-  - KL_PGPORT=5432
+  - KL_PGPORT=5433
   - KL_PGHOST=localhost
 
 script:
