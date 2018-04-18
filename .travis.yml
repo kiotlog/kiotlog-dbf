@@ -19,7 +19,7 @@ env:
   - KL_PGHOST=localhost
 
 before_script:
-  - sudo -u postgres -- psql -c "CREATE ROLE $KL_PGUSER PASSWORD 'md5b23e166616b9c6ce6684731cffc468b8' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"
+  - cd /; sudo -u postgres -- psql -c "CREATE ROLE $KL_PGUSER PASSWORD 'md5b23e166616b9c6ce6684731cffc468b8' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"; cd -
 
 script:
   - dotnet build
