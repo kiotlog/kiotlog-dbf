@@ -2,6 +2,7 @@
 .idea/
 bin/
 obj/
+out/
 *.code-workspace
 .paket/Paket.Restore.targets
 .paket/paket.targets
