@@ -2,9 +2,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup>
+  <!-- <PropertyGroup>
     <RuntimeFrameworkVersion>2.0.6</RuntimeFrameworkVersion>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <ItemGroup>
     <ProjectReference Include="..\KiotlogDBF\KiotlogDBF.fsproj" />
   </ItemGroup>
@@ -16,7 +16,8 @@
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.1.0" />
+    <PackageReference Include="FSharp.Core" Version="4.5.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.1.1" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
