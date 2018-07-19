@@ -24,4 +24,4 @@ before_script:
 script:
   - dotnet build
   - set -ef && cd Migrations && dotnet ef dbcontext info && dotnet ef migrations list && dotnet ef database update && cd ..
-  - set -ef && cd KiotlogDBF.Tests && dotnet xunit -verbose -fxversion 2.0.7 && cd ..
+  - set -ef && cd KiotlogDBF.Tests && dotnet test && cd ..
