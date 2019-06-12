@@ -9,7 +9,7 @@ namespace KiotlogDBF.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
-                .Annotation("Npgsql:PostgresExtension:pgcrypto", "'pgcrypto', '', ''");
+                .Annotation("Npgsql:PostgresExtension:pgcrypto", ",,");
 
             migrationBuilder.CreateTable(
                 name: "conversions",

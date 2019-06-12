@@ -1,9 +1,11 @@
 .vscode/
 .idea/
+.ionide/
 bin/
 obj/
 out/
 *.code-workspace
 .paket/Paket.Restore.targets
 .paket/paket.targets
-paket-files/paket.restore.cached
+paket-files/
+pakages/
