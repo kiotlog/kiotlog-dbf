@@ -32,6 +32,7 @@ module JsonTypes =
         member val Name = null with get, set
         member val Description = null with get, set
         member val Kind = null with get, set
+        member val Location = null with get, set
 
     [<AllowNullLiteral>]
     [<NotMapped>]
@@ -72,12 +73,12 @@ module JsonTypes =
     type SensorTypesMeta () =
         member val Max : int = Int32.MaxValue with get, set
         member val Min : int = Int32.MinValue with get, set
-        
+
     [<AllowNullLiteral>]
     [<NotMapped>]
     type UserMeta () =
         member val Notes = String.Empty with get, set
-    
+
     [<AllowNullLiteral>]
     [<NotMapped>]
     type UserAuth () =
