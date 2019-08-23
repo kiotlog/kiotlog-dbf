@@ -157,21 +157,21 @@ module Json =
 
         override _x.WriteJson(writer, value, serializer) =
             let value =
-              match value with
-              | null -> null
-              | _ ->
-                let _,fields = FSharpValue.GetUnionFields(value, value.GetType())
-                fields.[0]
+                match value with
+                | null -> null
+                | _ ->
+                    let _,fields = FSharpValue.GetUnionFields(value, value.GetType())
+                    fields.[0]
             serializer.Serialize(writer, value)
 
         override _x.ReadJson(reader, t, _existingValue, serializer) =
             let innerType = t.GetGenericArguments().[0]
 
             let innerType =
-              if innerType.IsValueType then
-                typedefof<Nullable<_>>.MakeGenericType([| innerType |])
-              else
-                innerType
+                if innerType.IsValueType then
+                    typedefof<Nullable<_>>.MakeGenericType([| innerType |])
+                else
+                    innerType
 
             let value = serializer.Deserialize(reader, innerType)
             let cases = FSharpType.GetUnionCases t
@@ -183,7 +183,7 @@ module Json =
     let snakeSettings =
         JsonSerializerSettings (
             NullValueHandling = NullValueHandling.Include,
-            MissingMemberHandling = MissingMemberHandling.Error,
+            MissingMemberHandling = MissingMemberHandling.Ignore,
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             Converters = [| OptionConverter(); DuConverter() |],
             ContractResolver =
