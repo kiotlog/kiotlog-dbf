@@ -36,10 +36,22 @@ type Devices () =
 
     member val Points = HashSet<Points>() with get, set
     member val Sensors = HashSet<Sensors>() with get, set
+    member val Annotations = HashSet<Annotations>() with get, set
 
     member public _this.ShouldSerializePoints () = false
     member public this.ShouldSerializeSensors () = not (Seq.isEmpty this.Sensors)
     override this.ToString() = toJsonString this
+
+and [<AllowNullLiteral>]
+    Annotations() =
+
+    member val Id = Guid.Empty with get, set
+    member val DeviceId = Guid.Empty with get, set
+    member val Begin = DateTime.Now with get, set
+    member val End : DateTime Nullable = Nullable() with get, set
+    member val Description = String.Empty with get, set
+
+    member val Device : Devices = null with get, set
 
 and [<AllowNullLiteral>]
     Points () =
@@ -92,7 +104,7 @@ and [<AllowNullLiteral>]
     member val Sensors = HashSet<Sensors>() with get, set
 
     member public _this.ShouldSerializeSensors () = false
-    
+
 [<AllowNullLiteral>]
 type Users() =
     
