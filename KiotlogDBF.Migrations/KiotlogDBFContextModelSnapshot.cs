@@ -25,25 +25,32 @@ namespace KiotlogDBF.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnName("id")
+                        .HasColumnType("uuid")
+                        .HasDefaultValueSql("gen_random_uuid()");
 
                     b.Property<DateTime>("Begin")
+                        .HasColumnName("begin")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
+                        .HasColumnName("description")
                         .HasColumnType("text");
 
                     b.Property<Guid>("DeviceId")
+                        .HasColumnName("device_id")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("End")
+                        .HasColumnName("end")
                         .HasColumnType("timestamp without time zone");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("annotations_pkey");
 
                     b.HasIndex("DeviceId");
 
-                    b.ToTable("Annotations");
+                    b.ToTable("annotations");
                 });
 
             modelBuilder.Entity("KiotlogDBF.Models.Conversions", b =>
