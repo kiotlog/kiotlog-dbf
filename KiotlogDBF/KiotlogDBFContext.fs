@@ -64,6 +64,10 @@ type KiotlogDBFContext (dbContextOptions: DbContextOptions<KiotlogDBFContext>) =
     abstract TenantUsers : DbSet<TenantUsers> with get, set
     override this.TenantUsers with get() = this.tenantusers and set(value) = this.tenantusers <- value
 
+    [<DefaultValue>] val mutable private annotations : DbSet<Annotations>
+    abstract Annotations : DbSet<Annotations> with get, set
+    override this.Annotations with get() = this.annotations and set(value) = this.annotations <- value
+
     override __.OnConfiguring(optionsBuilder: DbContextOptionsBuilder) =
         if not optionsBuilder.IsConfigured then () else ()
 
@@ -76,7 +80,7 @@ type KiotlogDBFContext (dbContextOptions: DbContextOptions<KiotlogDBFContext>) =
                 entity.HasKey(fun d -> d.Id :> obj)
                     .HasName("devices_pkey") |> ignore
                 entity.HasAlternateKey(fun d -> d.Device :> obj )
-                    .HasName("devices_device_key") |> ignore 
+                    .HasName("devices_device_key") |> ignore
                 entity.Property(fun d -> d.Id)
                     .HasColumnName("id")
                     .HasDefaultValueSql("gen_random_uuid()") |> ignore
@@ -102,6 +106,34 @@ type KiotlogDBFContext (dbContextOptions: DbContextOptions<KiotlogDBFContext>) =
                     .HasConversion(jsonConverter<DevicesFrame>)
                     .HasDefaultValueSql(""" '{"bigendian": true, "bitfields": false}'::jsonb """).
                     IsRequired() |> ignore
+        ) |> ignore
+
+        modelBuilder.Entity<Annotations>(
+            fun entity ->
+                entity.ToTable("annotations") |> ignore
+                entity.HasKey(fun d -> d.Id :> obj)
+                    .HasName("annotations_pkey") |> ignore
+                entity.Property(fun d -> d.Id)
+                    .HasColumnName("id")
+                    .HasDefaultValueSql("gen_random_uuid()") |> ignore
+                entity.Property("DeviceId")
+                    .HasColumnName("device_id")
+                    .HasColumnType("uuid") |> ignore
+                entity.HasOne(fun s -> s.Device)
+                    .WithMany(fun (d : Devices) -> d.Annotations :> IEnumerable<_>)
+                    .HasForeignKey(fun (s : Annotations) -> s.DeviceId :> obj)
+                    .HasConstraintName("annotations_device_id_fkey") |> ignore
+                entity.Property(fun a -> a.Begin)
+                    .HasColumnName("begin")
+                    .HasColumnType("timestamptz")
+                    .IsRequired()
+                    .HasDefaultValueSql("now()") |> ignore
+                entity.Property(fun a -> a.End)
+                    .HasColumnName("end")
+                    .HasColumnType("timestamptz") |> ignore
+                entity.Property(fun a -> a.Description)
+                    .HasColumnName("description")
+                    .HasColumnType("text") |> ignore
         ) |> ignore
 
         modelBuilder.Entity<Points>(
@@ -158,7 +190,7 @@ type KiotlogDBFContext (dbContextOptions: DbContextOptions<KiotlogDBFContext>) =
                     .WithMany(fun (d : Devices) -> d.Sensors :> IEnumerable<_>)
                     .HasForeignKey(fun (s : Sensors) -> s.DeviceId :> obj)
                     .HasConstraintName("sensors_device_id_fkey") |> ignore
-                entity.Property("SensorTypeId").HasColumnName("sensor_type_id") |> ignore                
+                entity.Property("SensorTypeId").HasColumnName("sensor_type_id") |> ignore
                 entity.HasOne(fun s -> s.SensorType)
                     .WithMany(fun (t : SensorTypes) -> t.Sensors :> IEnumerable<_>)
                     .HasForeignKey(fun (s: Sensors) -> s.SensorTypeId :> obj)
