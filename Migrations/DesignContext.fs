@@ -13,10 +13,10 @@ type KiotlogDBFContextFactory () =
             let defaultConfig =
                 Map [
                     ("PgHost", "localhost")
-                    ("PgPort", "5432")
+                    ("PgPort", "5433")
                     ("PgUser", "postgres")
                     ("PgPass", "")
-                    ("PgDatabase", "efcore")
+                    ("PgDatabase", "kiotlog")
                 ]
 
             let config =

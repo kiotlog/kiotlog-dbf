@@ -39,7 +39,7 @@ type Devices () =
     member val Annotations = HashSet<Annotations>() with get, set
 
     member public _this.ShouldSerializePoints () = false
-    member public this.ShouldSerializeSensors () = not (Seq.isEmpty this.Sensors)
+    member public _this.ShouldSerializeSensors () = not (Seq.isEmpty _this.Sensors)
     override this.ToString() = toJsonString this
 
 and [<AllowNullLiteral>]
@@ -52,6 +52,8 @@ and [<AllowNullLiteral>]
     member val Description = String.Empty with get, set
 
     member val Device : Devices = null with get, set
+
+    member public _this.ShouldSerializeDevice () = false
 
 and [<AllowNullLiteral>]
     Points () =
