@@ -24,6 +24,7 @@ open System
 open System.Collections.Generic
 
 open KiotlogDBF.Json
+open Newtonsoft.Json.Linq
 
 [<AllowNullLiteral>]
 type Devices () =
@@ -50,6 +51,7 @@ and [<AllowNullLiteral>]
     member val Begin = DateTime.Now with get, set
     member val End : DateTime Nullable = Nullable() with get, set
     member val Description = String.Empty with get, set
+    member val Data = JObject() with get, set
 
     member val Device : Devices = null with get, set
 

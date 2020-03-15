@@ -25,6 +25,7 @@ open Microsoft.EntityFrameworkCore
 
 open KiotlogDBF.Models
 open KiotlogDBF.Json
+open Newtonsoft.Json.Linq
 
 // https://stackoverflow.com/questions/5423768/c-sharp-to-f-ef-code-first
 // https://stackoverflow.com/questions/26775760/how-to-create-a-virtual-record-field-for-entity-framework-lazy-loading
@@ -134,6 +135,12 @@ type KiotlogDBFContext (dbContextOptions: DbContextOptions<KiotlogDBFContext>) =
                 entity.Property(fun a -> a.Description)
                     .HasColumnName("description")
                     .HasColumnType("text") |> ignore
+                entity.Property(fun p -> p.Data)
+                    .HasColumnName("data")
+                    .HasColumnType("jsonb")
+                    .IsRequired()
+                    .HasConversion(jsonConverter<JObject>)
+                    .HasDefaultValueSql("'{}'::jsonb") |> ignore
         ) |> ignore
 
         modelBuilder.Entity<Points>(

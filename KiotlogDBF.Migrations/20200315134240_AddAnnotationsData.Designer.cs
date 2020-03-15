@@ -4,6 +4,7 @@ using KiotlogDBF.Context;
 using KiotlogDBF.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Newtonsoft.Json.Linq;
@@ -11,9 +12,10 @@ using Newtonsoft.Json.Linq;
 namespace KiotlogDBF.Migrations
 {
     [DbContext(typeof(KiotlogDBFContext))]
-    partial class KiotlogDBFContextModelSnapshot : ModelSnapshot
+    [Migration("20200315134240_AddAnnotationsData")]
+    partial class AddAnnotationsData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
