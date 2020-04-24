@@ -33,6 +33,7 @@ module JsonTypes =
         member val Description = null with get, set
         member val Kind = null with get, set
         member val Location = null with get, set
+        member val UserDescription = null with get, set
 
     [<AllowNullLiteral>]
     [<NotMapped>]
