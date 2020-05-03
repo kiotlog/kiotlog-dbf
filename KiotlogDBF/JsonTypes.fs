@@ -29,11 +29,12 @@ module JsonTypes =
     [<AllowNullLiteral>]
     [<NotMapped>]
     type DevicesMeta () =
-        member val Name = null with get, set
-        member val Description = null with get, set
-        member val Kind = null with get, set
+        member val Name : string = null with get, set
+        member val Description : string = null with get, set
+        member val Kind : string = null with get, set
         member val Location = null with get, set
-        member val UserDescription = null with get, set
+        member val UserDescription : string = null with get, set
+        member val Tags : string[] = [||] with get, set
 
     [<AllowNullLiteral>]
     [<NotMapped>]
