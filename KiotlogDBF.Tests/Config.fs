@@ -32,7 +32,7 @@ let defaultConfig =
         ("PgPort", "5432")
         ("PgUser", "postgres")
         ("PgPass", "postgres")
-        ("PgDatabase", "kl_tests")
+        ("PgDatabase", "efcore")
     ]
 
 let config =

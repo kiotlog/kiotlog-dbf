@@ -15,7 +15,7 @@ type KiotlogDBFContextFactory () =
                     ("PgHost", "localhost")
                     ("PgPort", "5432")
                     ("PgUser", "postgres")
-                    ("PgPass", "")
+                    ("PgPass", "postgres")
                     ("PgDatabase", "efcore")
                 ]
 
