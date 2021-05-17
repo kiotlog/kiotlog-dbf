@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kiotlog/kiotlogdbf.svg?branch=master)](https://travis-ci.org/kiotlog/kiotlogdbf)
+[![Build Status](https://travis-ci.org/kiotlog/kiotlog-dbf.svg?branch=master)](https://travis-ci.org/kiotlog/kiotlogdbf)
 
 # KiotlogDB for PostgreSQL - F# Edition
 
