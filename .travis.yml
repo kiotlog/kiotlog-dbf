@@ -15,7 +15,7 @@ env:
   - KL_PGDATABASE="kl_tests"
   - KL_PGUSER="kiotlog"
   - KL_PGPASS="kiotlog"
-  - KL_PGPORT=5433
+  - KL_PGPORT=5432
   - KL_PGHOST=localhost
 
 before_script:
