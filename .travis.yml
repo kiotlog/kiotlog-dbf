@@ -23,6 +23,6 @@ before_script:
 
 script:
   - dotnet build
-  - dotnet tool install -g dotnet-ef && dotnet-ef --version
+  - dotnet tool install -g dotnet-ef && export PATH="$HOME/.dotnet/tools":$PATH && dotnet-ef --version
   - set -ef && cd Migrations && dotnet-ef dbcontext info && dotnet-ef migrations list && dotnet-ef database update && cd ..
   - set -ef && cd KiotlogDBF.Tests && dotnet test && cd ..
